@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(dotnet build:*)",
+      "Bash(dotnet add:*)",
+      "WebFetch(domain:hub.docker.com)",
+      "Bash(docker-compose down -v)"
+    ]
+  }
+}

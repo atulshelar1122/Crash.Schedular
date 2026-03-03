@@ -1,0 +1,136 @@
+{
+  "info": {
+    "name": "Task Scheduler API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Health Check",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:5000/health",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5000",
+          "path": ["health"]
+        }
+      }
+    },
+    {
+      "name": "Create Email Task",
+      "request": {
+        "method": "POST",
+        "header": [{"key": "Content-Type", "value": "application/json"}],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Send Welcome Email\",\n  \"taskType\": \"email\",\n  \"payload\": \"{\\\"to\\\":\\\"user@example.com\\\",\\\"subject\\\":\\\"Welcome!\\\",\\\"body\\\":\\\"Hello World\\\"}\",\n  \"priority\": 5,\n  \"maxRetries\": 3\n}"
+        },
+        "url": {
+          "raw": "http://localhost:5000/api/tasks",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5000",
+          "path": ["api", "tasks"]
+        }
+      }
+    },
+    {
+      "name": "Create Report Task (High Priority)",
+      "request": {
+        "method": "POST",
+        "header": [{"key": "Content-Type", "value": "application/json"}],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Generate Sales Report\",\n  \"taskType\": \"report\",\n  \"payload\": \"{\\\"reportType\\\":\\\"monthly-sales\\\"}\",\n  \"priority\": 9,\n  \"maxRetries\": 3\n}"
+        },
+        "url": {
+          "raw": "http://localhost:5000/api/tasks",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5000",
+          "path": ["api", "tasks"]
+        }
+      }
+    },
+    {
+      "name": "Get All Tasks",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:5000/api/tasks?page=1&pageSize=20",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5000",
+          "path": ["api", "tasks"],
+          "query": [
+            {"key": "page", "value": "1"},
+            {"key": "pageSize", "value": "20"}
+          ]
+        }
+      }
+    },
+    {
+      "name": "Get Task by ID",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:5000/api/tasks/{{taskId}}",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5000",
+          "path": ["api", "tasks", "{{taskId}}"]
+        }
+      }
+    },
+    {
+      "name": "Get Metrics",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:5000/api/metrics",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5000",
+          "path": ["api", "metrics"]
+        }
+      }
+    },
+    {
+      "name": "Create Recurring Task",
+      "request": {
+        "method": "POST",
+        "header": [{"key": "Content-Type", "value": "application/json"}],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Daily Health Check\",\n  \"taskType\": \"email\",\n  \"payload\": \"{\\\"to\\\":\\\"ops@example.com\\\",\\\"subject\\\":\\\"Health Check\\\",\\\"body\\\":\\\"System OK\\\"}\",\n  \"cronExpression\": \"0 9 * * *\",\n  \"priority\": 5,\n  \"maxRetries\": 2\n}"
+        },
+        "url": {
+          "raw": "http://localhost:5000/api/recurring-tasks",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5000",
+          "path": ["api", "recurring-tasks"]
+        }
+      }
+    },
+    {
+      "name": "Get All Recurring Tasks",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:5000/api/recurring-tasks",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5000",
+          "path": ["api", "recurring-tasks"]
+        }
+      }
+    }
+  ]
+}

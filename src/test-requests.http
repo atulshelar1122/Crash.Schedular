@@ -1,0 +1,72 @@
+### Health Check
+GET http://localhost:5000/health
+
+### Create Email Task (Immediate)
+POST http://localhost:5000/api/tasks
+Content-Type: application/json
+
+{
+  "name": "Send Welcome Email",
+  "taskType": "email",
+  "payload": "{\"to\":\"user@example.com\",\"subject\":\"Welcome!\",\"body\":\"Hello World\"}",
+  "priority": 5,
+  "maxRetries": 3
+}
+
+### Create Report Task (High Priority)
+POST http://localhost:5000/api/tasks
+Content-Type: application/json
+
+{
+  "name": "Generate Monthly Report",
+  "taskType": "report",
+  "payload": "{\"reportType\":\"monthly-sales\"}",
+  "priority": 9,
+  "maxRetries": 3
+}
+
+### Create Scheduled Task (5 minutes from now)
+POST http://localhost:5000/api/tasks
+Content-Type: application/json
+
+{
+  "name": "Scheduled Email",
+  "taskType": "email",
+  "payload": "{\"to\":\"admin@example.com\",\"subject\":\"Reminder\",\"body\":\"This is scheduled\"}",
+  "scheduledTime": "{{$datetime iso8601 300}}",
+  "priority": 5
+}
+
+### Get All Tasks
+GET http://localhost:5000/api/tasks?page=1&pageSize=20
+
+### Get Task by ID (replace with actual ID)
+GET http://localhost:5000/api/tasks/00000000-0000-0000-0000-000000000000
+
+### Get Tasks by Status
+GET http://localhost:5000/api/tasks?status=Completed&page=1&pageSize=10
+
+### Get Metrics
+GET http://localhost:5000/api/metrics
+
+### Create Recurring Task (Every minute)
+POST http://localhost:5000/api/recurring-tasks
+Content-Type: application/json
+
+{
+  "name": "Hourly Health Check",
+  "taskType": "email",
+  "payload": "{\"to\":\"ops@example.com\",\"subject\":\"Health Check\",\"body\":\"System OK\"}",
+  "cronExpression": "* * * * *",
+  "priority": 3,
+  "maxRetries": 2
+}
+
+### Get All Recurring Tasks
+GET http://localhost:5000/api/recurring-tasks
+
+### Disable Recurring Task (replace with actual ID)
+PUT http://localhost:5000/api/recurring-tasks/00000000-0000-0000-0000-000000000000/disable
+
+### Enable Recurring Task (replace with actual ID)
+PUT http://localhost:5000/api/recurring-tasks/00000000-0000-0000-0000-000000000000/enable
